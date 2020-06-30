@@ -1,6 +1,6 @@
 mkdir -p ~/.streamlit/
 
-echo “\
+echo "\
 [general]\n\
 email = \"azmeng@bu.edu\"\n\
 " > ~/.streamlit/credentials.toml
