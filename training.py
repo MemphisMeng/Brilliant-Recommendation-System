@@ -40,7 +40,7 @@ def get_top_n(predictions, n=10):
   return top_n
 
 
-# We'll use the famous SVD algorithm.
+# We'll use the KNN algorithm.
 algo = KNNBasic()
 trainset = data.build_full_trainset()
 algo.fit(trainset)
