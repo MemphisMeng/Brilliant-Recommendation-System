@@ -10,7 +10,6 @@ from io import BytesIO
 
 movies = pd.read_csv('movies.csv')
 ratings = pd.read_csv('ratings_small.csv')
-links = pd.read_csv('links.csv')
 with open('topN.json') as json_file:
   top_n = json.load(json_file)
 
