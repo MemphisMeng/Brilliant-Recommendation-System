@@ -1,7 +1,7 @@
 import pandas as pd
 from surprise import Dataset
 from surprise import Reader
-from surprise import SVD
+from surprise import KNNBasic
 from collections import defaultdict
 import json
 
@@ -41,7 +41,7 @@ def get_top_n(predictions, n=10):
 
 
 # We'll use the famous SVD algorithm.
-algo = SVD()
+algo = KNNBasic()
 trainset = data.build_full_trainset()
 algo.fit(trainset)
 # Than predict ratings for all pairs (u, i) that are NOT in the training set.
