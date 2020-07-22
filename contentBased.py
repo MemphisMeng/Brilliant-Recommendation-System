@@ -6,8 +6,11 @@ movies = pd.read_csv("movies.csv", header=0)
 ratings = pd.read_csv("ratings_small.csv", header=0)
 
 movies = movies.replace({np.nan: None})
-movies.drop_duplicates(movies.columns, inplace=True)
+# drop implicit duplicates as many as possible
+movies.drop_duplicates(inplace=True)
+movies.drop_duplicates(['id'], inplace=True)
 
+# extract movies' content
 movie_profile = movies[['id', 'title', 'genres']]
 movie_profile.rename(columns={'id': 'movieId'}, inplace=True)
 
@@ -25,15 +28,11 @@ for i in range(len(movie_profile)):
             movie_profile[g].iloc[i] = 1
 
 movie_profile = movie_profile.drop(columns=['title', 'genres']).set_index('movieId')
-user_x_movie = pd.pivot_table(ratings, values='rating', index=['movieId'], columns=['userId'])
-movie_profile.sort_index(axis=1, inplace=True)
-movie_profile.drop_duplicates(inplace=True)
-# drop extra movie in the movie profile
-for i in movie_profile.index:
-    if i not in user_x_movie.index:
-        movie_profile.drop(i, inplace=True)
+movie_profile.sort_index(axis=0, inplace=True)
 
-user_x_movie.sort_index(axis=1, inplace=True)
+# generate users' content
+user_x_movie = pd.pivot_table(ratings, values='rating', index=['movieId'], columns=['userId'])
+user_x_movie.sort_index(axis=0, inplace=True)
 userIDs = user_x_movie.columns
 user_profile = pd.DataFrame(columns=movie_profile.columns)
 
@@ -42,6 +41,7 @@ for i in tqdm(range(len(user_x_movie.columns))):
     working_df.replace(0, np.NaN, inplace=True)
     user_profile.loc[userIDs[i]] = working_df.mean(axis=0)
 
+# apply TFIDF for similarity comparison
 df = movie_profile.sum()
 idf = (len(movies) / df).apply(np.log)  # log inverse of DF
 TFIDF = movie_profile.mul(idf.values)
@@ -51,6 +51,4 @@ for i in tqdm(range(len(user_x_movie.columns))):
     working_df = TFIDF.mul(user_profile.iloc[i], axis=1)
     df_predict[user_x_movie.columns[i]] = working_df.sum(axis=1)
 
-# df_predict = df_predict.set_index('movieId')
 df_predict.to_csv('TFIDF.csv')
-movies.to_csv('truncated_movies.csv')

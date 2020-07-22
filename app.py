@@ -7,26 +7,23 @@ from PIL import Image
 from requests.exceptions import MissingSchema
 from io import BytesIO
 
-movies = pd.read_csv('truncated_movies.csv', index_col=0)
+movies = pd.read_csv('movies.csv')
 movies.drop_duplicates(inplace=True)
-df_predict = pd.read_csv('TFIDF.csv').set_index('movieId')
+df_predict = pd.read_csv('TFIDF.csv')
+print(df_predict)
 ratings = pd.read_csv('ratings_small.csv')
 
 
 def recommender(user_no):
     # user predicted rating to all films
-    user_predicted_rating = df_predict[df_predict.columns[user_no - 1]]
-
+    user_predicted_rating = df_predict[['movieId', df_predict.columns[user_no]]]
     # combine film rating and film detail
     user_rating_film = pd.merge(user_predicted_rating, movies, left_on='movieId', right_on='id')
-
     # films already watched by user
     already_watched = ratings[ratings['userId'].isin([user_no])]['movieId']
-
     # recommendation without films being watched by user
     all_rec = user_rating_film[~user_rating_film.index.isin(already_watched)]
-
-    return all_rec.sort_values(by=str(user_no), ascending=False, axis=0).iloc[0:10][['id', 'title']]
+    return all_rec.sort_values(by=str(user_no), ascending=False, axis=0).iloc[0:10][['movieId', 'title']]
 
 
 # streamlit app design
@@ -42,7 +39,7 @@ if button:
         for j in range(10):
             try:
                 films.append(recommended_movies['title'].iloc[j])
-                doc = pq('https://www.themoviedb.org/movie/' + str(recommended_movies['id'].iloc[j]))
+                doc = pq('https://www.themoviedb.org/movie/' + str(recommended_movies['movieId'].iloc[j]))
                 image = doc('.image_content.backdrop img').attr('data-src')
                 poster = requests.get(image)
                 posters.append(poster)
