@@ -16,6 +16,7 @@ ratings = pd.read_csv('ratings_small.csv')
 
 def recommender(user_no):
     # user predicted rating to all films
+    st.write(df_predict.head())
     user_predicted_rating = df_predict[['movieId', df_predict.columns[user_no]]]
     # combine film rating and film detail
     user_rating_film = pd.merge(user_predicted_rating, movies, left_on='movieId', right_on='id')
