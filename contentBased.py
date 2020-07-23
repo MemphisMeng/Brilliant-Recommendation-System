@@ -52,3 +52,6 @@ for i in tqdm(range(len(user_x_movie.columns))):
     df_predict[user_x_movie.columns[i]] = working_df.sum(axis=1)
 
 df_predict.to_csv('TFIDF.csv')
+user_profile.to_csv('user_profile.csv')
+TFIDF.to_csv('idf.csv')
+movie_profile.to_csv('movie_profile.csv')
