@@ -1,5 +1,5 @@
 # Brilliant Recommendation System 
-Brilliant Recommendations System is [Made With ML] Data Science Incubator Summer 2020 project. 
+Brilliant Recommendations System is [Made With ML] Data Science Incubator Summer 2020 project. This is a recommendation system simulating some existing prestigious streaming platfrom (e.g. Netflix, YouTube) and utilizing content-based filtering which is configured with TF-IDF.
 
 ### Installation 
 First, create virtual environment using  [Anaconda] so that the installation does not conflict with system wide installs.
@@ -24,6 +24,10 @@ $ pip install -r requirements.txt
 $ streamlit run app.py
 
 ```
+
+### Deployment
+Please feel free check it out [here](https://recommendation-sys.herokuapp.com)!
+
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 [Anaconda]: <https://www.anaconda.com/distribution/>
 [Made With ML]: <https://madewithml.com/incubator/>
