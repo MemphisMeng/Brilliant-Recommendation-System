@@ -8,7 +8,7 @@ class TmdbSpider(scrapy.Spider):
     name = 'TMDB'
     allowed_domains = ['themoviedb.org']
     start_urls = ['https://www.themoviedb.org/movie/']
-    movie_codes = pd.read_csv('movie_code.csv')['id']
+    movie_codes = pd.read_csv('data/movie_code.csv')['id']
 
     def start_requests(self):
         for code in self.movie_codes:

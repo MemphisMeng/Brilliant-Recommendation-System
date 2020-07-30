@@ -13,3 +13,8 @@ class MovielensItem(scrapy.Item):
     # name = scrapy.Field()
     id = scrapy.Field()
     poster = scrapy.Field()
+
+
+class DownloaderItem(scrapy.Item):
+    image_urls = scrapy.Field()
+    images = scrapy.Field()

@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c924153-c5ae-4dd1-a160-d98832086c37" name="Default Changelist" comment="" />
+    <list default="true" id="7c924153-c5ae-4dd1-a160-d98832086c37" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movieLens/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/movieLens/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movieLens/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/movieLens/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movieLens/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/movieLens/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movieLens/spiders/TMDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/movieLens/spiders/TMDB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_code.csv" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1fHhDtjHJRkcVvsfJXEC4xFCUqj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -15,6 +34,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -42,6 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1595880809493</updated>
       <workItem from="1595880817599" duration="7557000" />
+      <workItem from="1596054510403" duration="8490000" />
     </task>
     <servers />
   </component>
@@ -49,13 +70,13 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="279" y="58" key="SettingsEditor" timestamp="1595881164058">
+    <state x="279" y="58" key="SettingsEditor" timestamp="1596054556459">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1595881164058" />
-    <state x="477" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1595880826412">
+    <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596054556459" />
+    <state x="477" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1596054510640">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="477" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1595880826412" />
+    <state x="477" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1596054510640" />
   </component>
 </project>
