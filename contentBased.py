@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 
-movies = pd.read_csv("movies.csv", header=0)
-ratings = pd.read_csv("ratings_small.csv", header=0)
+movies = pd.read_csv("data/movies.csv", header=0)
+ratings = pd.read_csv("data/ratings_small.csv", header=0)
 
 movies = movies.replace({np.nan: None})
 # drop implicit duplicates as many as possible

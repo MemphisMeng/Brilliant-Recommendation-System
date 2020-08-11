@@ -1,8 +1,8 @@
 import pandas as pd
 
 
-movies = pd.read_csv("movies.csv", header=0)
-ratings = pd.read_csv("ratings_small.csv", header=0)
+movies = pd.read_csv("data/movies.csv", header=0)
+ratings = pd.read_csv("data/ratings_small.csv", header=0)
 
 def promote():
     # top 150 most rated movies

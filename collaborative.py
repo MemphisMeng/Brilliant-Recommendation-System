@@ -5,7 +5,7 @@ from surprise import KNNBasic
 from collections import defaultdict
 import json
 
-ratings = pd.read_csv('ratings_small.csv')
+ratings = pd.read_csv('data/ratings_small.csv')
 # A reader is still needed but only the rating_scale param is requiered.
 reader = Reader(rating_scale=(1, 5))
 
@@ -49,5 +49,5 @@ testset = trainset.build_anti_testset()
 predictions = algo.test(testset)
 top_n = get_top_n(predictions, n=10)
 
-with open('topN.json', 'w') as outfile:
+with open('data/topN.json', 'w') as outfile:
     json.dump(top_n, outfile)

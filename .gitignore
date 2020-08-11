@@ -1,4 +1,6 @@
 # Byte-compiled / optimized / DLL files
+.ipynb_checkpoints/
+.idea/
 __pycache__/
 *.py[cod]
 **/train

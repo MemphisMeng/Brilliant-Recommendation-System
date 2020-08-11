@@ -13,13 +13,13 @@ list_of_genres = ['animation', 'western', 'fantasy', 'thriller', 'drama', 'histo
                           'tv movie', 'documentary', 'mystery', 'adventure', 'family', 'romance', 'action', 'horror',
                           'war', 'music', 'science fiction', 'foreign']
 
-movies = pd.read_csv('movies.csv')
+movies = pd.read_csv('data/movies.csv')
 movies.drop_duplicates(inplace=True)
-df_predict = pd.read_csv('TFIDF.csv')
-ratings = pd.read_csv('ratings_small.csv')
-user_profile = pd.read_csv('user_profile.csv')
-TFIDF = pd.read_csv('idf.csv').set_index('movieId')
-movie_profile = pd.read_csv('movie_profile.csv')
+df_predict = pd.read_csv('data/TFIDF.csv')
+ratings = pd.read_csv('data/ratings_small.csv')
+user_profile = pd.read_csv('data/user_profile.csv')
+TFIDF = pd.read_csv('data/idf.csv').set_index('movieId')
+movie_profile = pd.read_csv('data/movie_profile.csv')
 
 
 def recommender(user_no):
