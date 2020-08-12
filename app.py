@@ -101,9 +101,7 @@ if button:
 
             preference = pd.DataFrame(rates, index=[int(id_)]).T.sort_index(axis=0)
             test_list = np.dot(TFIDF, preference)
-            print(test_list.shape)
             movie_ranks = pd.DataFrame(data=test_list, index=movie_profile['movieId'].unique(), columns=[int(id_)])
-            print(movie_ranks)
             recommended_movies = pd.merge(movie_ranks, movies, left_on=movie_ranks.index, right_on='id') \
                                      .sort_values(by=int(id_), ascending=False, axis=0).iloc[0:10][['id', 'title']]
 
