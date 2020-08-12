@@ -6,7 +6,7 @@ import urllib
 import requests
 from PIL import Image
 from requests.exceptions import MissingSchema
-from best_rated_promotion import promote
+from default_promotion import promote
 from io import BytesIO
 
 list_of_genres = ['animation', 'western', 'fantasy', 'thriller', 'drama', 'history', 'crime', 'comedy',
