@@ -40,6 +40,7 @@ def promote():
         recommendation = pd.concat([recommendation, extra], ignore_index=True)
     elif recommendation.shape[0] > 10:
         # only takes the top 10 recommendation based on the voting rates
-        recommendation = recommendation['average_vote'].sort_values(0, ascending=False)[:10].index
+        best = recommendation['average_vote'].sort_values(0, ascending=False)[:10].index
+        recommendation = recommendation[recommendation.index.isin(best)]
 
     return recommendation[['id', 'title']]
