@@ -8,18 +8,37 @@ from PIL import Image
 from requests.exceptions import MissingSchema
 from default_promotion import promote
 from io import BytesIO
+from pymongo import MongoClient
+import os
 
 list_of_genres = ['animation', 'western', 'fantasy', 'thriller', 'drama', 'history', 'crime', 'comedy',
                           'tv movie', 'documentary', 'mystery', 'adventure', 'family', 'romance', 'action', 'horror',
                           'war', 'music', 'science fiction', 'foreign']
 
+# connect to the MongoDb cluster for predicted ranks
+MONGODB_URI = os.environ['MONGODB_URI']
+client = MongoClient(MONGODB_URI)
+db = client['MovieLens']
+TFIDF_collection = db['TFIDF']
+idf_collection = db['idf']
+user_profile_collection = db['user_profile']
+movie_profile_collection = db['movie_profile']
+st.write("connection complete")
+
+# read from local
 movies = pd.read_csv('data/movies.csv')
 movies.drop_duplicates(inplace=True)
-df_predict = pd.read_csv('data/TFIDF.csv')
 ratings = pd.read_csv('data/ratings_small.csv')
-user_profile = pd.read_csv('data/user_profile.csv')
-TFIDF = pd.read_csv('data/idf.csv').set_index('movieId')
-movie_profile = pd.read_csv('data/movie_profile.csv')
+
+# read from mongo DB
+user_profile = pd.DataFrame(list(user_profile_collection.find()))
+st.write("user profile checkpoint")
+TFIDF = pd.DataFrame(list(idf_collection.find()))
+st.write("TFIDF checkpoint")
+movie_profile = pd.DataFrame(list(movie_profile_collection.find()))
+st.write("movie profile checkpoint")
+df_predict = pd.DataFrame(list(TFIDF_collection.find()))
+st.write("prediction checkpoint")
 
 
 def recommender(user_no):

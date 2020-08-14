@@ -1,6 +1,16 @@
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
+from pymongo import MongoClient
+import os
+
+MONGODB_URI = os.environ['MONGODB_URI']
+client = MongoClient(MONGODB_URI)
+db = client['MovieLens']
+TFIDF_collection = db['TFIDF']
+idf_collection = db['idf']
+user_profile_collection = db['user_profile']
+movie_profile_collection = db['movie_profile']
 
 movies = pd.read_csv("data/movies.csv", header=0)
 ratings = pd.read_csv("data/ratings_small.csv", header=0)
@@ -51,7 +61,25 @@ for i in tqdm(range(len(user_x_movie.columns))):
     working_df = TFIDF.mul(user_profile.iloc[i], axis=1)
     df_predict[user_x_movie.columns[i]] = working_df.sum(axis=1)
 
-df_predict.to_csv('TFIDF.csv')
-user_profile.to_csv('user_profile.csv')
-TFIDF.to_csv('idf.csv')
-movie_profile.to_csv('movie_profile.csv')
+# upload dataframes to mongo DB cluster
+df_predict.reset_index(inplace=True)
+df_predict = df_predict.to_dict("records")
+# convert keys' type from integer to string
+df_predict = [{str(key): value for key, value in _.items()} for _ in df_predict]
+# Insert to collection
+TFIDF_collection.insert_many(df_predict)
+
+user_profile.reset_index(inplace=True)
+user_profile = user_profile.to_dict("records")
+# Insert to collection
+user_profile_collection.insert_many(user_profile)
+
+TFIDF.reset_index(inplace=True)
+TFIDF = TFIDF.to_dict("records")
+# Insert to collection
+idf_collection.insert_many(TFIDF)
+
+movie_profile.reset_index(inplace=True)
+movie_profile = movie_profile.to_dict("records")
+# Insert to collection
+movie_profile_collection.insert_many(movie_profile)
