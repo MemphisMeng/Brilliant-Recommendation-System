@@ -28,6 +28,8 @@ $ streamlit run app.py
 ### Deployment
 Please feel free check it out [here](https://recommendation-sys.herokuapp.com)!
 
+### [Article] (https://towardsdatascience.com/movie-recommendation-system-based-on-movielens-ef0df580cd0e)
+
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 [Anaconda]: <https://www.anaconda.com/distribution/>
 [Made With ML]: <https://madewithml.com/incubator/>
