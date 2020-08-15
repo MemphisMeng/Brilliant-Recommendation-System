@@ -23,7 +23,6 @@ TFIDF_collection = db['TFIDF']
 idf_collection = db['idf']
 user_profile_collection = db['user_profile']
 movie_profile_collection = db['movie_profile']
-st.write("connection complete")
 
 # read from local
 movies = pd.read_csv('data/movies.csv')
@@ -32,13 +31,9 @@ ratings = pd.read_csv('data/ratings_small.csv')
 
 # read from mongo DB
 user_profile = pd.DataFrame(list(user_profile_collection.find()))
-st.write("user profile checkpoint")
 TFIDF = pd.DataFrame(list(idf_collection.find()))
-st.write("TFIDF checkpoint")
 movie_profile = pd.DataFrame(list(movie_profile_collection.find()))
-st.write("movie profile checkpoint")
 df_predict = pd.DataFrame(list(TFIDF_collection.find()))
-st.write("prediction checkpoint")
 
 
 def recommender(user_no):
