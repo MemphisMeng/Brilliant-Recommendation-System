@@ -8,7 +8,7 @@ from PIL import Image
 from requests.exceptions import MissingSchema
 from default_promotion import promote
 from io import BytesIO
-from pymongo import MongoClient
+import sqlalchemy
 import os
 
 list_of_genres = ['animation', 'western', 'fantasy', 'thriller', 'drama', 'history', 'crime', 'comedy',
@@ -16,13 +16,9 @@ list_of_genres = ['animation', 'western', 'fantasy', 'thriller', 'drama', 'histo
                           'war', 'music', 'science fiction', 'foreign']
 
 # connect to the MongoDb cluster for predicted ranks
-MONGODB_URI = os.environ['MONGODB_URI']
-client = MongoClient(MONGODB_URI)
-db = client['MovieLens']
-TFIDF_collection = db['TFIDF']
-idf_collection = db['idf']
-user_profile_collection = db['user_profile']
-movie_profile_collection = db['movie_profile']
+DATABASE_URL = 'mysql+pymysql://zcugd4i076rqn9rx:pqoiahtpry5uozp6@d6ybckq58s9ru745.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qr9luv8vefanv3u5'
+engine = sqlalchemy.create_engine(DATABASE_URL)
+connection = engine.connect()
 
 # read from local
 movies = pd.read_csv('data/movies.csv')
@@ -30,10 +26,11 @@ movies.drop_duplicates(inplace=True)
 ratings = pd.read_csv('data/ratings_small.csv')
 
 # read from mongo DB
-user_profile = pd.DataFrame(list(user_profile_collection.find()))
-TFIDF = pd.DataFrame(list(idf_collection.find()))
-movie_profile = pd.DataFrame(list(movie_profile_collection.find()))
-df_predict = pd.DataFrame(list(TFIDF_collection.find()))
+user_profile = pd.read_sql('SELECT * FROM qr9luv8vefanv3u5.user_profile', connection)
+user_profile.drop(columns=['index'], inplace=True)
+TFIDF = pd.read_sql('SELECT * FROM qr9luv8vefanv3u5.idf', connection)
+movie_profile = pd.read_sql('SELECT * FROM qr9luv8vefanv3u5.movie_profile', connection)
+df_predict = pd.read_sql('SELECT * FROM qr9luv8vefanv3u5.TFIDF', connection)
 
 
 def recommender(user_no):
