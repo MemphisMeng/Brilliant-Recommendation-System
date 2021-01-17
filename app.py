@@ -93,6 +93,9 @@ if __name__ == '__main__':
                 except MissingSchema as exception:
                     print('Movie\'s poster is not found!')
                     posters.append(404)
+                except TypeError as exception:
+                    print('Movie\'s poster is not found!')
+                    posters.append(404)
 
             display()
 
@@ -130,6 +133,9 @@ if __name__ == '__main__':
                     print('Movie\'s link is broken!')
                     posters.append(404)
                 except MissingSchema as exception:
+                    print('Movie\'s poster is not found!')
+                    posters.append(404)
+                except TypeError as exception:
                     print('Movie\'s poster is not found!')
                     posters.append(404)
 
