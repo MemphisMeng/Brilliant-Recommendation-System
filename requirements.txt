@@ -3,7 +3,7 @@ pandas==1.0.5
 scikit-surprise==1.1.0
 streamlit==0.62.0
 pyquery==1.4.1
-urllib3==1.25.9
+urllib3==1.26.5
 requests==2.24.0
 Pillow==2.2.2
 sqlalchemy
