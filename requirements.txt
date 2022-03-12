@@ -5,7 +5,7 @@ streamlit==0.62.0
 pyquery==1.4.1
 urllib3==1.25.9
 requests==2.24.0
-Pillow==2.2.2
+Pillow==9.0.1
 sqlalchemy
 pymysql
 tqdm
